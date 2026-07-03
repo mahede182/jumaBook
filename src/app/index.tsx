@@ -1,9 +1,6 @@
-import { Text, View } from 'react-native';
+import { Redirect } from 'expo-router';
+import React from 'react';
 
 export default function Home() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Hello world</Text>
-    </View>
-  );
+  return <Redirect href="/(tabs)/bookings" />;
 }
