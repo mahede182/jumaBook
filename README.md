@@ -1,56 +1,61 @@
-# Welcome to your Expo app 👋
+# JumaBook
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+JumaBook is a mobile booking application built with React Native and Expo. It allows users to browse, book, and manage experiences and tours. The app features a highly responsive, modern UI with smooth animations and a scalable design system.
 
-## Get started
+## Setup Instructions
 
-1. Install dependencies
+1. **Prerequisites**
+   - Node.js (v18 or newer recommended)
+   - npm or yarn package manager
+   - [Expo Go](https://expo.dev/go) app installed on your physical device, or an iOS Simulator/Android Emulator set up on your machine.
 
+2. **Installation**
+   Clone the repository and install the required dependencies:
    ```bash
+   git clone git@github.com:mahede182/jumaBook.git
+   cd jumaBook
    npm install
    ```
 
-2. Start the app
+## How to run the project
 
+1. **Start the Expo development server:**
    ```bash
-   npx expo start
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+2. **Open the app:**
+   - Press **`i`** in the terminal to open the app in an iOS Simulator (macOS only).
+   - Press **`a`** to open in an Android Emulator.
+   - Scan the QR code shown in the terminal with the Expo Go app on your physical device (use the Camera app on iOS or the Expo app on Android).
+   - Press **`w`** to open the project in your web browser.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Folder Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+├── app/                  # Expo Router file-based routing
+│   ├── (tabs)/           # Bottom tab navigation routes
+│   └── booking/          # Booking-specific routes
+├── assets/               # Static assets (images, fonts, etc.)
+├── components/           # Global reusable UI components
+├── constants/            # Theming, colors, and mock data
+├── features/             # Feature-driven modules (Domain Driven Design)
+│   ├── account/          # Account & profile feature
+│   ├── booking/          # Booking feature (components, screens, types)
+│   ├── chat/             # Chat feature
+│   └── explore/          # Explore feature
+├── hooks/                # Global custom React hooks
+└── utils/                # Helper functions (e.g., responsive scaling)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Any assumptions made
 
-### Other setup steps
+- **Mock Data**: All booking listings, itineraries, reviews, and host profiles are currently populated using hardcoded static data located in `src/constants/data.ts`. It is assumed that this will be replaced with real API endpoints in the future.
+- **Responsiveness**: The UI is designed based on a base screen width (393px, typical for iPhone 14/15) and scales up/down using custom utility functions (`scale` and `fontScale` in `src/utils/responsive.ts`).
+- **Styling**: We assume a custom theme setup instead of a third-party UI library to closely match the provided Figma designs. Standardized spacing, colors, and fonts are exported from `src/constants/theme.ts`.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## Any known limitations
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Backend Integration**: The application does not currently communicate with a live backend. Actions like booking a tour, rescheduling, or canceling are simulated locally and do not persist across app reloads.
+- **Placeholder Screens**: Certain tabs and flows might display an `<UnderConstruction />` component until those features are fully implemented.
