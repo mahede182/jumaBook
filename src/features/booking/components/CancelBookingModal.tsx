@@ -2,7 +2,7 @@ import { Modal, Pressable, Image as RNImage, StyleSheet, Text, TouchableWithoutF
 
 import { COLORS, FONTS, IMAGES } from '@/constants/theme';
 import { CancelBookingModalProps } from '../@types/booking.type';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 
 export default function CancelBookingModal({ visible, onClose, onConfirm }: CancelBookingModalProps) {
   return (

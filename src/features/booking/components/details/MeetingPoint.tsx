@@ -1,16 +1,16 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
 import { Map } from 'lucide-react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { COLORS, FONTS, SPACING } from '@/constants/theme';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
+import { fontScale, scale } from '@/utils/responsive';
+import { Image } from 'expo-image';
 
 export default function MeetingPoint() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Meeting point</Text>
       <Text style={styles.subtitle}>07:00 am</Text>
-      
+
       <View style={styles.addressRow}>
         <Map size={16} color={COLORS.TEXT} style={styles.icon} />
         <Text style={styles.addressText}>
@@ -19,10 +19,11 @@ export default function MeetingPoint() {
       </View>
 
       <View style={styles.mapContainer}>
-        <View style={styles.mapPlaceholder}>
-          <Text style={{ color: '#888' }}>Map Snippet Placeholder</Text>
-          <View style={styles.pin} />
-        </View>
+        <Image
+          source={IMAGES.MAP}
+          style={{ width: '100%', height: '100%' }}
+          contentFit="cover"
+        />
       </View>
     </View>
   );

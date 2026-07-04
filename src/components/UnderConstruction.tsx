@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 import { Construction } from 'lucide-react-native';
 import { COLORS, FONTS } from '@/constants/theme';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 
 interface UnderConstructionProps {
   style?: ViewStyle;

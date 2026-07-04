@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONTS, IMAGES } from '@/constants/theme';
 import { ITINERARY_DATA, ITINERARY_INFO } from '@/constants/data';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 
 export default function Itinerary() {
   return (

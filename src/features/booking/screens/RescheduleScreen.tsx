@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BOOKINGS, MONTHS, WEEKDAYS, FULL_WEEKDAYS } from '@/constants/data';
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
 import BookingCard from '@/features/booking/components/BookingCard';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 
 const formatMonthYear = (date: Date) => `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 const formatDayOfWeek = (date: Date) => WEEKDAYS[date.getDay()];

@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 import { BOOKINGS, BookingData } from '@/constants/data';
 import BookingCard from '@/features/booking/components/BookingCard';
 import BookingOptionsModal from '@/features/booking/components/BookingOptionsModal';

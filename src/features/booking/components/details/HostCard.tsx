@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
 import { HostCardProps } from '../../@types/booking.type';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 
 export default function HostCard({ host }: HostCardProps) {
   return (

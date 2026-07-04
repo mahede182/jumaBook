@@ -9,7 +9,7 @@ import { COLORS, FONTS } from '@/constants/theme';
 import { removeNewlines } from '@/utils/string';
 import { DETAILS_CAROUSEL_IMAGES } from '@/constants/data';
 import { DetailsHeroProps } from '../../@types/booking.type';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 
 export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: DetailsHeroProps) {
   const router = useRouter();

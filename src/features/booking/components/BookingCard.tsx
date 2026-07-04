@@ -8,7 +8,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
 import { BookingCardProps } from '../@types/booking.type';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 
 export default function BookingCard({ booking, onOptionsPress, style, index = 0 }: BookingCardProps) {
   const optionsRef = useRef<View>(null);

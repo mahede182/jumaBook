@@ -3,7 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
 import { BottomBarProps } from '../../@types/booking.type';
-import { scale, fontScale } from '@/shared/utils/responsive';
+import { scale, fontScale } from '@/utils/responsive';
 
 export default function BottomBar({ price, onEditPress }: BottomBarProps) {
   const insets = useSafeAreaInsets();

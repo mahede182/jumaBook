@@ -51,4 +51,5 @@ export const IMAGES = {
   CURRENCY: require('../assets/images/currency.png'),
   ALERT: require('../assets/images/alert.png'),
   ITERNITY_BANNER: require('../assets/images/iternityBanner.png'),
+  MAP: require('../assets/images/map.png'),
 } as const;
