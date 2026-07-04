@@ -12,6 +12,8 @@ export const COLORS = {
   BORDER: 'rgba(5, 59, 41, 0.06)',
   TAB_BORDER: 'rgba(0,0,0,0.08)',
   ACCENT: '#ff5930',
+  STAR: '#F9A629',
+  DISCOUNT_BG: '#157E4B',
 } as const;
 
 export type ThemeColor = keyof typeof COLORS;
@@ -46,4 +48,6 @@ export const IMAGES = {
   TAB_ACCOUNT: require('../assets/images/tab_account_inactive.png'),
   TAB_ACCOUNT_ACTIVE: require('../assets/images/tab_account_active.png'),
   EMPTY_BOOKING: require('../../assets/images/empty_booking.png'),
+  CURRENCY: require('../assets/images/currency.png'),
+  ALERT: require('../assets/images/alert.png'),
 } as const;

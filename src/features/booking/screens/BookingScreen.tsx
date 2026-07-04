@@ -1,18 +1,61 @@
 import { Plus } from 'lucide-react-native';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
+import { BOOKINGS, BookingData } from '@/constants/data';
+import BookingCard from '@/features/booking/components/BookingCard';
+import BookingOptionsModal from '@/features/booking/components/BookingOptionsModal';
+import CancelBookingModal from '@/features/booking/components/CancelBookingModal';
 
-export default function BookingEmpty() {
+export default function BookingScreen() {
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<'Upcoming' | 'Completed'>('Upcoming');
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
+  const [selectedBookingPosition, setSelectedBookingPosition] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
+  const [hasStartedBooking, setHasStartedBooking] = useState(false);
+  const [isCancelModalVisible, setIsCancelModalVisible] = useState(false);
+  const [bookingToCancel, setBookingToCancel] = useState<string | null>(null);
+
+  const activeBookings = hasStartedBooking ? BOOKINGS.filter(b => b.status === activeTab) : [];
+  const isEmpty = activeBookings.length === 0;
+
+  const renderEmptyState = () => (
+    <View style={styles.emptyContent}>
+      <View style={styles.emptyIconContainer}>
+        <Image 
+          source={IMAGES.EMPTY_BOOKING} 
+          style={{ width: 306, height: 186 }} 
+          contentFit="contain" 
+        />
+      </View>
+
+      <Text style={[styles.emptyTitle, { color: COLORS.TEXT }]}>{activeTab} booking empty</Text>
+      <Text style={[styles.emptySubtitle, { color: COLORS.TEXT }]}>
+        You didn't have any {activeTab.toLowerCase()} booking story here, please start your booking
+      </Text>
+
+      <Pressable
+        onPress={() => setHasStartedBooking(true)}
+        style={({ pressed }) => [
+          styles.ctaButton,
+          { backgroundColor: COLORS.PRIMARY, opacity: pressed ? 0.8 : 1 },
+        ]}
+      >
+        <Text style={[styles.ctaButtonText, { color: COLORS.BACKGROUND }]}>
+          Start booking now
+        </Text>
+      </Pressable>
+    </View>
+  );
+
   return (
     <View style={[styles.container, { backgroundColor: COLORS.BACKGROUND }]}>
       <View style={[styles.header, { marginTop: insets.top + SPACING.THREE }]}>
         <Pressable
+          onPress={() => setHasStartedBooking(true)}
           style={({ pressed }) => [
             styles.plusButton,
             { borderColor: COLORS.BORDER, opacity: pressed ? 0.7 : 1 },
@@ -59,31 +102,55 @@ export default function BookingEmpty() {
         </Pressable>
       </View>
 
-      <View style={styles.content}>
-        <View style={styles.emptyIconContainer}>
-          <Image 
-            source={IMAGES.EMPTY_BOOKING} 
-            style={{ width: 306, height: 186 }} 
-            contentFit="contain" 
-          />
-        </View>
+      {isEmpty ? (
+        renderEmptyState()
+      ) : (
+        <FlatList
+          data={activeBookings}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <BookingCard 
+              booking={item} 
+              onOptionsPress={(position) => {
+                setSelectedBookingId(item.id);
+                setSelectedBookingPosition(position);
+              }} 
+            />
+          )}
+          contentContainerStyle={styles.listContent}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
 
-        <Text style={[styles.emptyTitle, { color: COLORS.TEXT }]}>Upcoming booking empty</Text>
-        <Text style={[styles.emptySubtitle, { color: COLORS.TEXT }]}>
-          You didn't have any upcoming booking story here, please start your booking
-        </Text>
+      <BookingOptionsModal
+        visible={!!selectedBookingId}
+        position={selectedBookingPosition}
+        onClose={() => {
+          setSelectedBookingId(null);
+          setSelectedBookingPosition(null);
+        }}
+        onCancelPress={() => {
+          setBookingToCancel(selectedBookingId);
+          setSelectedBookingId(null);
+          setSelectedBookingPosition(null);
+          setIsCancelModalVisible(true);
+        }}
+        onReschedulePress={() => console.log('Reschedule', selectedBookingId)}
+      />
 
-        <Pressable
-          style={({ pressed }) => [
-            styles.ctaButton,
-            { backgroundColor: COLORS.PRIMARY, opacity: pressed ? 0.8 : 1 },
-          ]}
-        >
-          <Text style={[styles.ctaButtonText, { color: COLORS.BACKGROUND }]}>
-            Start booking now
-          </Text>
-        </Pressable>
-      </View>
+      <CancelBookingModal
+        visible={isCancelModalVisible}
+        onClose={() => {
+          setIsCancelModalVisible(false);
+          setBookingToCancel(null);
+        }}
+        onConfirm={() => {
+          console.log('Confirmed Cancellation for', bookingToCancel);
+          setIsCancelModalVisible(false);
+          setBookingToCancel(null);
+          // TODO: dispatch cancel action or handle via RTK Query mutation
+        }}
+      />
     </View>
   );
 }
@@ -119,6 +186,7 @@ const styles = StyleSheet.create({
     borderRadius: 44,
     height: 53,
     padding: 4,
+    marginBottom: SPACING.THREE,
   },
   segmentTab: {
     flex: 1,
@@ -135,7 +203,11 @@ const styles = StyleSheet.create({
   segmentTextActive: {
     fontFamily: FONTS.SEMI_BOLD,
   },
-  content: {
+  listContent: {
+    paddingHorizontal: SPACING.THREE,
+    paddingBottom: SPACING.FIVE,
+  },
+  emptyContent: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

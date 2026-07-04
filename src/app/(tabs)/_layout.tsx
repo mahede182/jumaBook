@@ -33,7 +33,6 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <Image
               source={focused ? IMAGES.TAB_EXPLORE_ACTIVE : IMAGES.TAB_EXPLORE}
-              tintColor={focused ? COLORS.TEXT : COLORS.TAB_INACTIVE}
               style={{ width: 28, height: 28 }}
             />
           ),
@@ -46,7 +45,6 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <Image
               source={focused ? IMAGES.TAB_CHAT_ACTIVE : IMAGES.TAB_CHAT}
-              tintColor={focused ? COLORS.TEXT : COLORS.TAB_INACTIVE}
               style={{ width: 24, height: 24 }}
             />
           ),
@@ -59,7 +57,6 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <Image
               source={focused ? IMAGES.TAB_BOOKINGS_ACTIVE : IMAGES.TAB_BOOKINGS}
-              tintColor={focused ? COLORS.TEXT : COLORS.TAB_INACTIVE}
               style={{ width: 24, height: 24 }}
             />
           ),
@@ -78,7 +75,6 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <Image
               source={focused ? IMAGES.TAB_ACCOUNT_ACTIVE : IMAGES.TAB_ACCOUNT}
-              tintColor={focused ? COLORS.TEXT : COLORS.TAB_INACTIVE}
               style={{ width: 24, height: 24 }}
             />
           ),
