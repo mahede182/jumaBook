@@ -37,9 +37,13 @@ export const BOTTOM_TAB_INSET = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MAX_CONTENT_WIDTH = 800;
 
 export const IMAGES = {
-  TAB_EXPLORE: require('../../assets/images/tab_explore.png'),
-  TAB_CHAT: require('../../assets/images/tab_chat.png'),
-  TAB_BOOKINGS: require('../../assets/images/tab_bookings.png'),
-  TAB_ACCOUNT: require('../../assets/images/tab_account.png'),
+  TAB_EXPLORE: require('../assets/images/tab_explore_inactive.png'),
+  TAB_EXPLORE_ACTIVE: require('../assets/images/tab_explorer_active.png'),
+  TAB_CHAT: require('../assets/images/tab_chat_inactive.png'),
+  TAB_CHAT_ACTIVE: require('../assets/images/tab_chat_active.png'),
+  TAB_BOOKINGS: require('../assets/images/tab_booking_inactive.png'),
+  TAB_BOOKINGS_ACTIVE: require('../assets/images/tab_bookings_active.png'),
+  TAB_ACCOUNT: require('../assets/images/tab_account_inactive.png'),
+  TAB_ACCOUNT_ACTIVE: require('../assets/images/tab_account_active.png'),
   EMPTY_BOOKING: require('../../assets/images/empty_booking.png'),
 } as const;

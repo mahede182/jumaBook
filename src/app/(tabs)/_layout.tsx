@@ -1,7 +1,5 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
+import { Tabs } from 'expo-router';
 
 import { COLORS, FONTS, IMAGES } from '@/constants/theme';
 
@@ -32,8 +30,12 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: () => (
-            <Image source={IMAGES.TAB_EXPLORE} style={{ width: 28, height: 28 }} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? IMAGES.TAB_EXPLORE_ACTIVE : IMAGES.TAB_EXPLORE}
+              tintColor={focused ? COLORS.TEXT : COLORS.TAB_INACTIVE}
+              style={{ width: 28, height: 28 }}
+            />
           ),
         }}
       />
@@ -41,8 +43,12 @@ export default function TabLayout() {
         name="chat"
         options={{
           title: 'Chat',
-          tabBarIcon: () => (
-            <Image source={IMAGES.TAB_CHAT} style={{ width: 24, height: 24 }} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? IMAGES.TAB_CHAT_ACTIVE : IMAGES.TAB_CHAT}
+              tintColor={focused ? COLORS.TEXT : COLORS.TAB_INACTIVE}
+              style={{ width: 24, height: 24 }}
+            />
           ),
         }}
       />
@@ -50,8 +56,12 @@ export default function TabLayout() {
         name="bookings"
         options={{
           title: 'Bookings',
-          tabBarIcon: () => (
-            <Image source={IMAGES.TAB_BOOKINGS} style={{ width: 24, height: 24 }} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? IMAGES.TAB_BOOKINGS_ACTIVE : IMAGES.TAB_BOOKINGS}
+              tintColor={focused ? COLORS.TEXT : COLORS.TAB_INACTIVE}
+              style={{ width: 24, height: 24 }}
+            />
           ),
           tabBarLabelStyle: {
             fontFamily: FONTS.BOLD,
@@ -65,8 +75,12 @@ export default function TabLayout() {
         name="account"
         options={{
           title: 'Account',
-          tabBarIcon: () => (
-            <Image source={IMAGES.TAB_ACCOUNT} style={{ width: 24, height: 24 }} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? IMAGES.TAB_ACCOUNT_ACTIVE : IMAGES.TAB_ACCOUNT}
+              tintColor={focused ? COLORS.TEXT : COLORS.TAB_INACTIVE}
+              style={{ width: 24, height: 24 }}
+            />
           ),
         }}
       />
