@@ -4,10 +4,12 @@ import { useRef } from 'react';
 import { Pressable, Image as RNImage, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
+import Animated, { FadeInDown } from 'react-native-reanimated';
+
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
 import { BookingCardProps } from '../@types/booking.type';
 
-export default function BookingCard({ booking, onOptionsPress, style }: BookingCardProps) {
+export default function BookingCard({ booking, onOptionsPress, style, index = 0 }: BookingCardProps) {
   const optionsRef = useRef<View>(null);
   const router = useRouter();
 
@@ -18,27 +20,23 @@ export default function BookingCard({ booking, onOptionsPress, style }: BookingC
   };
 
   return (
-    <Pressable style={[styles.card, style]} onPress={() => router.push(`/booking/${booking.id}`)}>
-      {/* Image Block */}
+    <Animated.View entering={FadeInDown.duration(600).delay(index * 150).springify()}>
+      <Pressable style={[styles.card, style]} onPress={() => router.push(`/booking/${booking.id}`)}>
       <View style={styles.imageContainer}>
         <RNImage
           source={{ uri: booking.imageUrl }}
           style={styles.image}
           resizeMode="cover"
         />
-        {/* Heart Icon Overlay */}
         <Pressable style={styles.heartButton} hitSlop={8}>
           <Heart size={20} color={COLORS.BACKGROUND} />
         </Pressable>
-        {/* Share Icon Overlay */}
         <Pressable style={styles.shareButton} hitSlop={8}>
           <Share2 size={20} color={COLORS.BACKGROUND} />
         </Pressable>
       </View>
 
-      {/* Content Block */}
       <View style={styles.contentContainer}>
-        {/* Rating and Date Row */}
         <View style={styles.topRow}>
           <View style={styles.ratingContainer}>
             <Star size={16} color={COLORS.STAR} fill={COLORS.STAR} />
@@ -53,12 +51,10 @@ export default function BookingCard({ booking, onOptionsPress, style }: BookingC
           )}
         </View>
 
-        {/* Title */}
         <Text style={styles.title} numberOfLines={3}>
           {booking.title}
         </Text>
 
-        {/* Bottom Row */}
         <View style={styles.bottomRow}>
           <View style={styles.priceBlock}>
             <View style={styles.priceRow}>
@@ -100,7 +96,8 @@ export default function BookingCard({ booking, onOptionsPress, style }: BookingC
           </View>
         </View>
       </View>
-    </Pressable>
+      </Pressable>
+    </Animated.View>
   );
 }
 

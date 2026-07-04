@@ -5,6 +5,7 @@ export interface BookingCardProps {
   booking: BookingData;
   onOptionsPress?: (position: { x: number; y: number; width: number; height: number }) => void;
   style?: ViewStyle;
+  index?: number;
 }
 
 export interface BookingOptionsModalProps {

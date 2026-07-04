@@ -67,8 +67,6 @@ export default function BookingOptionsModal({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    // No background color for a cleaner popover look, or a very light shadow
-    // We'll keep a completely transparent overlay to just capture outside taps
   },
   popover: {
     backgroundColor: COLORS.BACKGROUND,
@@ -91,6 +89,6 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.MEDIUM,
     fontSize: 16,
     color: COLORS.TEXT,
-    textAlign: 'left', // Aligned left per typical popover design
+    textAlign: 'left',
   },
 });

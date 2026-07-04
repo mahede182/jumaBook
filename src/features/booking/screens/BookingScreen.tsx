@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { Plus } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native';
+import Animated, { LinearTransition, FadeInUp } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 
@@ -46,17 +47,19 @@ export default function BookingScreen() {
         You didn't have any {activeTab.toLowerCase()} booking story here, please start your booking
       </Text>
 
-      <Pressable
-        onPress={startBooking}
-        style={({ pressed }) => [
-          styles.ctaButton,
-          { backgroundColor: COLORS.PRIMARY, opacity: pressed ? 0.8 : 1 },
-        ]}
-      >
-        <Text style={[styles.ctaButtonText, { color: COLORS.BACKGROUND }]}>
-          Start booking now
-        </Text>
-      </Pressable>
+      <Animated.View entering={FadeInUp.duration(600).delay(200).springify()} style={{ width: '100%' }}>
+        <Pressable
+          onPress={startBooking}
+          style={({ pressed }) => [
+            styles.ctaButton,
+            { backgroundColor: COLORS.PRIMARY, opacity: pressed ? 0.8 : 1 },
+          ]}
+        >
+          <Text style={[styles.ctaButtonText, { color: COLORS.BACKGROUND }]}>
+            Start booking now
+          </Text>
+        </Pressable>
+      </Animated.View>
     </View>
   );
 
@@ -77,11 +80,23 @@ export default function BookingScreen() {
       </View>
 
       <View style={[styles.segmentContainer, { backgroundColor: COLORS.BORDER }]}>
-        <Pressable
+        <Animated.View 
+          layout={LinearTransition.springify()} 
           style={[
-            styles.segmentTab,
-            activeTab === 'Upcoming' && [styles.segmentTabActive, { backgroundColor: COLORS.PRIMARY }],
-          ]}
+            styles.segmentTabActive, 
+            { 
+              backgroundColor: COLORS.PRIMARY, 
+              position: 'absolute', 
+              width: '50%', 
+              height: '100%', 
+              top: 4, 
+              left: activeTab === 'Upcoming' ? 4 : '50%',
+              borderRadius: 26.5
+            }
+          ]} 
+        />
+        <Pressable
+          style={styles.segmentTab}
           onPress={() => setActiveTab('Upcoming')}
         >
           <Text
@@ -94,10 +109,7 @@ export default function BookingScreen() {
           </Text>
         </Pressable>
         <Pressable
-          style={[
-            styles.segmentTab,
-            activeTab === 'Completed' && [styles.segmentTabActive, { backgroundColor: COLORS.PRIMARY }],
-          ]}
+          style={styles.segmentTab}
           onPress={() => setActiveTab('Completed')}
         >
           <Text
@@ -117,9 +129,10 @@ export default function BookingScreen() {
         <FlatList
           data={activeBookings}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <BookingCard 
               booking={item} 
+              index={index}
               onOptionsPress={(position) => {
                 setSelectedBookingId(item.id);
                 setSelectedBookingPosition(position);

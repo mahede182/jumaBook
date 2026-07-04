@@ -5,7 +5,7 @@ import {
   IBMPlexSans_700Bold,
   useFonts,
 } from '@expo-google-fonts/ibm-plex-sans';
-import { Slot } from 'expo-router';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
@@ -29,5 +29,9 @@ export default function Layout() {
     return null;
   }
 
-  return <Slot />;
+  return (
+    <Stack screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
+      <Stack.Screen name="(tabs)" />
+    </Stack>
+  );
 }

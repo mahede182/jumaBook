@@ -6,6 +6,7 @@ import { COLORS, FONTS, IMAGES } from '@/constants/theme';
 export default function TabLayout() {
   return (
     <Tabs
+      initialRouteName="bookings"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: COLORS.TEXT,

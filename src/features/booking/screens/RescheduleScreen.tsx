@@ -1,4 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Image } from 'expo-image';
+import Animated, { LinearTransition } from 'react-native-reanimated';
 import { ChevronLeft, ChevronRight, Clock } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -102,14 +104,13 @@ export default function RescheduleScreen() {
             </View>
           </View>
 
-          {/* Calendar row */}
           <View style={styles.calendarRow}>
             {currentWindowDays.map((day, idx) => {
               const isActive = isSameDate(day, selectedDate);
               
               if (isActive) {
                 return (
-                  <View key={idx} style={styles.calendarDayActiveWrapper}>
+                  <Animated.View layout={LinearTransition.springify()} key={idx} style={styles.calendarDayActiveWrapper}>
                     <View style={styles.calendarDayActive}>
                       <Text style={styles.dayLabelActive}>{formatDayOfWeek(day)}</Text>
                       <View style={styles.dateCircle}>
@@ -117,22 +118,24 @@ export default function RescheduleScreen() {
                       </View>
                     </View>
                     <View style={styles.dotGroup}><View style={styles.dotDark}/></View>
-                  </View>
+                  </Animated.View>
                 );
               }
 
               return (
-                <Pressable key={idx} style={styles.calendarDay} onPress={() => setSelectedDate(day)}>
-                  <Text style={styles.dayLabel}>{formatDayOfWeek(day)}</Text>
-                  <Text style={styles.dateLabelInactive}>{day.getDate()}</Text>
-                  <View style={styles.dotGroup}>
-                    {idx % 2 === 0 ? (
-                      <><View style={styles.dot}/><View style={styles.dot}/><View style={styles.dot}/></>
-                    ) : (
-                      <><View style={styles.dot}/><View style={styles.dot}/></>
-                    )}
-                  </View>
-                </Pressable>
+                <Animated.View layout={LinearTransition.springify()} key={idx}>
+                  <Pressable style={styles.calendarDay} onPress={() => setSelectedDate(day)}>
+                    <Text style={styles.dayLabel}>{formatDayOfWeek(day)}</Text>
+                    <Text style={styles.dateLabelInactive}>{day.getDate()}</Text>
+                    <View style={styles.dotGroup}>
+                      {idx % 2 === 0 ? (
+                        <><View style={styles.dot}/><View style={styles.dot}/><View style={styles.dot}/></>
+                      ) : (
+                        <><View style={styles.dot}/><View style={styles.dot}/></>
+                      )}
+                    </View>
+                  </Pressable>
+                </Animated.View>
               );
             })}
           </View>
@@ -152,7 +155,6 @@ export default function RescheduleScreen() {
 
       </ScrollView>
 
-      {/* Bottom Sticky Bar */}
       <View style={[styles.bottomBar, { paddingBottom: Math.max(insets.bottom, 24) }]}>
         <View style={styles.bottomBarLeft}>
           <Text style={styles.bottomBarDate}>{bottomBarDateStr}</Text>
