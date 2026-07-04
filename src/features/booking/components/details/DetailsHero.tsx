@@ -7,13 +7,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { COLORS, FONTS } from '@/constants/theme';
 import { removeNewlines } from '@/utils/string';
-
-interface DetailsHeroProps {
-  title: string;
-  rating: number;
-  reviewsCount: number;
-  imageUrl?: string;
-}
+import { DETAILS_CAROUSEL_IMAGES } from '@/constants/data';
+import { DetailsHeroProps } from '../../@types/booking.type';
 
 const { width } = Dimensions.get('window');
 
@@ -23,9 +18,9 @@ export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: D
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   const images = [
-    imageUrl || 'https://images.unsplash.com/photo-1549643276-fdf2fab574f5?w=800&q=80',
-    'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
-    'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&q=8',
+    imageUrl || DETAILS_CAROUSEL_IMAGES[0],
+    DETAILS_CAROUSEL_IMAGES[1],
+    DETAILS_CAROUSEL_IMAGES[2],
   ];
 
   return (

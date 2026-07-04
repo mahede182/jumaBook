@@ -1,27 +1,18 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
 import { Image } from 'expo-image';
 import { Star } from 'lucide-react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
-
-interface HostCardProps {
-  host: {
-    name: string;
-    rating: number;
-    isSuperhost: boolean;
-    yearsHosting: number;
-  };
-}
+import { HostCardProps } from '../../@types/booking.type';
 
 export default function HostCard({ host }: HostCardProps) {
   return (
     <View style={styles.container}>
-      <Image 
-        source={{ uri: 'https://i.pravatar.cc/150?u=a042581f4e29026024d' }} 
-        style={styles.avatar} 
+      <Image
+        source={{ uri: 'https://i.pravatar.cc/150?u=a042581f4e29026024d' }}
+        style={styles.avatar}
       />
-      
+
       <View style={styles.content}>
         <View style={styles.nameRow}>
           <Text style={styles.name}>{host.name}</Text>

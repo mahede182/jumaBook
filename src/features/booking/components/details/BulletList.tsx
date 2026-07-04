@@ -1,10 +1,6 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
 import { FONTS } from '@/constants/theme';
-
-interface BulletListProps {
-  items: string[];
-}
+import { StyleSheet, Text, View } from 'react-native';
+import { BulletListProps } from '../../@types/booking.type';
 
 export default function BulletList({ items }: BulletListProps) {
   return (

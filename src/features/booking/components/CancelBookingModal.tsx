@@ -1,12 +1,7 @@
 import { Dimensions, Modal, Pressable, Image as RNImage, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 
 import { COLORS, FONTS, IMAGES } from '@/constants/theme';
-
-export interface CancelBookingModalProps {
-  visible: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-}
+import { CancelBookingModalProps } from '../@types/booking.type';
 
 const { width } = Dimensions.get('window');
 

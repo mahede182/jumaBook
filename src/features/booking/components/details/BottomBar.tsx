@@ -1,14 +1,8 @@
-import React from 'react';
-import { StyleSheet, View, Text, Pressable, Platform } from 'react-native';
+import { Image, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { COLORS, FONTS, SPACING, IMAGES } from '@/constants/theme';
-import { Image } from 'react-native';
-
-interface BottomBarProps {
-  price: string;
-  onEditPress?: () => void;
-}
+import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
+import { BottomBarProps } from '../../@types/booking.type';
 
 export default function BottomBar({ price, onEditPress }: BottomBarProps) {
   const insets = useSafeAreaInsets();
@@ -19,8 +13,8 @@ export default function BottomBar({ price, onEditPress }: BottomBarProps) {
       <View style={styles.priceContainer}>
         <Text style={styles.fromText}>from</Text>
         <View style={styles.priceRow}>
-          <Image 
-            source={IMAGES.CURRENCY} 
+          <Image
+            source={IMAGES.CURRENCY}
             style={[styles.currencyIcon, { tintColor: COLORS.TEXT }]}
             resizeMode="contain"
           />

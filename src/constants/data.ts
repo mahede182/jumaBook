@@ -125,3 +125,55 @@ export const KEY_INFO_DATA = {
   groupSizeLabel: 'Group size ( Up to 4 guests per session )',
   groupSizeValue: 'Snack included',
 };
+
+export const DETAILS_CAROUSEL_IMAGES = [
+  'https://images.unsplash.com/photo-1549643276-fdf2fab574f5?w=800&q=80',
+  'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+  'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80',
+];
+
+export const KNOW_BEFORE_YOU_GO_DATA = {
+  bring: [
+    'Bring a refillable water bottle, photo ID, sunscreen, hat, sunglasses, comfortable shoes, all-weather clothing, camera, spending money to buy local produce, and a small day pack of 5-7 kg.'
+  ],
+  notAllowed: [
+    'Large luggage, outside food, and personal beverages are not allowed on this tour.'
+  ],
+  additional: [
+    'The full-day tour runs from 7am to 6:30pm and is not recommended for guests under 3 years old.',
+    "Infants aged under 4 years may travel on an adult's lap; a child ticket is required; protective seats are available on request.",
+    'Winery stops may change; enjoy 3 tastings from estates rotating between Irongate Estate, Savannah Estate, Constable, Tempus Two / Roche, Mount View, Tintilla Estate, Gun Dog, and Mistletoe.',
+    'Lunch is provided; extra dining in Hunter Valley Village is at your expense.',
+    'Hunter Valley Gardens entry is not included; the tour stops only near the village.',
+    'Please inform of any dietary needs at the time of booking.',
+    'Service may be refused if passengers appear intoxicated. No refunds if asked to leave the tour.'
+  ]
+};
+
+export const BOOKING_DETAILS_MOCK = {
+  highlights: [
+    'Begin your day from Sydney on a relaxed, small-group tour to Hunter Valley, savor boutique wine tastings, and enjoy expert commentary on local vineyards.',
+    'Enjoy a gourmet lunch at Cypress Lakes with artisan baguettes, crisp salads, hearty pies & a local cheese platter that perfectly complements every bite.',
+    'Ride comfortably in an air-conditioned minibus with curated Sydney pick-up & drop-off points for a truly seamless, memorable full-day wine tour experience.'
+  ],
+  inclusions: [
+    'Full-day wine-tasting tour in Hunter Valley',
+    'Small group of up to 14 people',
+    'Wine tastings at 3-4 boutique wineries',
+    'Lunch options at Cypress Lakes: choice of baguettes, salads, pies, fish, chicken, burgers, and chips; served with coffee, tea, or soft drink',
+    'Local produce cheese-tasting platter'
+  ],
+  exclusions: [
+    'Beverages and snacks not indicated within inclusions',
+    'Additional wine purchases'
+  ],
+  host: {
+    name: 'Juma Khamas',
+    isSuperhost: true,
+    yearsHosting: 5,
+  }
+};
+
+export const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+export const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+export const FULL_WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

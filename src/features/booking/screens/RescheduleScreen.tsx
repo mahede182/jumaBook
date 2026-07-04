@@ -1,25 +1,20 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Image } from 'expo-image';
-import Animated, { LinearTransition } from 'react-native-reanimated';
 import { ChevronLeft, ChevronRight, Clock } from 'lucide-react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Animated, { LinearTransition } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BOOKINGS, MONTHS, WEEKDAYS, FULL_WEEKDAYS } from '@/constants/data';
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
-import { BOOKINGS } from '@/constants/data';
 import BookingCard from '@/features/booking/components/BookingCard';
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-const FULL_WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const formatMonthYear = (date: Date) => `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 const formatDayOfWeek = (date: Date) => WEEKDAYS[date.getDay()];
 const isSameDate = (d1: Date, d2: Date) => {
-  return d1.getFullYear() === d2.getFullYear() && 
-         d1.getMonth() === d2.getMonth() && 
-         d1.getDate() === d2.getDate();
+  return d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate();
 };
 
 export default function RescheduleScreen() {
@@ -48,7 +43,7 @@ export default function RescheduleScreen() {
   });
 
   const bottomBarDateStr = `${FULL_WEEKDAYS[selectedDate.getDay()]}, ${MONTHS[selectedDate.getMonth()]} ${selectedDate.getDate()}, ${selectedDate.getFullYear()}`;
-  
+
   const booking = BOOKINGS.find((b) => b.id === id) || BOOKINGS[0];
 
   const renderHeader = () => (
@@ -70,8 +65,8 @@ export default function RescheduleScreen() {
   return (
     <View style={styles.container}>
       {renderHeader()}
-      
-      <ScrollView 
+
+      <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
@@ -88,7 +83,7 @@ export default function RescheduleScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Select a new available date</Text>
           <Text style={styles.sectionSubtitle}>All prices are in SAR ($568,00)</Text>
-          
+
           <View style={styles.monthRow}>
             <View style={styles.monthTextRow}>
               <Text style={styles.monthText}>{formatMonthYear(windowStart)}</Text>
@@ -107,7 +102,7 @@ export default function RescheduleScreen() {
           <View style={styles.calendarRow}>
             {currentWindowDays.map((day, idx) => {
               const isActive = isSameDate(day, selectedDate);
-              
+
               if (isActive) {
                 return (
                   <Animated.View layout={LinearTransition.springify()} key={idx} style={styles.calendarDayActiveWrapper}>
@@ -117,7 +112,7 @@ export default function RescheduleScreen() {
                         <Text style={styles.dateLabelActive}>{day.getDate()}</Text>
                       </View>
                     </View>
-                    <View style={styles.dotGroup}><View style={styles.dotDark}/></View>
+                    <View style={styles.dotGroup}><View style={styles.dotDark} /></View>
                   </Animated.View>
                 );
               }
@@ -129,9 +124,9 @@ export default function RescheduleScreen() {
                     <Text style={styles.dateLabelInactive}>{day.getDate()}</Text>
                     <View style={styles.dotGroup}>
                       {idx % 2 === 0 ? (
-                        <><View style={styles.dot}/><View style={styles.dot}/><View style={styles.dot}/></>
+                        <><View style={styles.dot} /><View style={styles.dot} /><View style={styles.dot} /></>
                       ) : (
-                        <><View style={styles.dot}/><View style={styles.dot}/></>
+                        <><View style={styles.dot} /><View style={styles.dot} /></>
                       )}
                     </View>
                   </Pressable>

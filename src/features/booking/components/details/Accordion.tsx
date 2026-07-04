@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Pressable, LayoutAnimation } from 'react-native';
 import { ChevronDown, ChevronUp } from 'lucide-react-native';
+import React, { useState } from 'react';
+import { LayoutAnimation, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
-
-interface AccordionProps {
-  title: string;
-  children: React.ReactNode;
-  defaultExpanded?: boolean;
-}
+import { AccordionProps } from '../../@types/booking.type';
 
 export default function Accordion({ title, children, defaultExpanded = false }: AccordionProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
