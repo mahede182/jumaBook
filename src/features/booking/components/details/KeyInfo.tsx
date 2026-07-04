@@ -4,6 +4,7 @@ import { Clock, Ticket } from 'lucide-react-native';
 
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
 import { KEY_INFO_DATA } from '@/constants/data';
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 export default function KeyInfo() {
   return (
@@ -34,14 +35,14 @@ export default function KeyInfo() {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: SPACING.FOUR,
-    gap: 24,
+    gap: scale(24),
   },
   item: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   iconContainer: {
-    width: 40,
+    width: scale(40),
     alignItems: 'flex-start',
   },
   textContainer: {
@@ -49,13 +50,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: FONTS.BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.TEXT,
   },
   subtitle: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 13,
+    fontSize: fontScale(13),
     color: '#666',
-    marginBottom: 4,
+    marginBottom: scale(4),
   },
 });

@@ -1,9 +1,8 @@
-import { Dimensions, Modal, Pressable, Image as RNImage, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Modal, Pressable, Image as RNImage, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 
 import { COLORS, FONTS, IMAGES } from '@/constants/theme';
 import { CancelBookingModalProps } from '../@types/booking.type';
-
-const { width } = Dimensions.get('window');
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 export default function CancelBookingModal({ visible, onClose, onConfirm }: CancelBookingModalProps) {
   return (
@@ -92,36 +91,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalContent: {
-    width: width - 48,
+    maxWidth: '90%',
+    width: scale(345),
     backgroundColor: COLORS.BACKGROUND,
-    borderRadius: 24,
+    borderRadius: scale(24),
     overflow: 'hidden',
   },
   topSection: {
-    paddingTop: 16,
-    paddingBottom: 24,
-    paddingHorizontal: 24,
+    paddingTop: scale(16),
+    paddingBottom: scale(24),
+    paddingHorizontal: scale(24),
     alignItems: 'center',
   },
   alertIcon: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
+    width: scale(100),
+    height: scale(100),
+    marginBottom: scale(20),
   },
   title: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 20,
+    fontSize: fontScale(20),
     color: COLORS.TEXT,
-    marginBottom: 8,
+    marginBottom: scale(8),
     textAlign: 'center',
   },
   subtitle: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: '#666666',
     textAlign: 'center',
-    lineHeight: 22,
-    paddingHorizontal: 8,
+    lineHeight: fontScale(22),
+    paddingHorizontal: scale(8),
   },
   divider: {
     height: 2,
@@ -129,21 +129,21 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   bottomSection: {
-    paddingTop: 24,
-    paddingBottom: 24,
-    paddingHorizontal: 24,
+    paddingTop: scale(24),
+    paddingBottom: scale(24),
+    paddingHorizontal: scale(24),
   },
   sectionTitle: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.TEXT,
-    marginBottom: 16,
+    marginBottom: scale(16),
   },
   bulletRow: {
     flexDirection: 'row',
-    marginBottom: 12,
-    paddingLeft: 12,
-    paddingRight: 8,
+    marginBottom: scale(12),
+    paddingLeft: scale(12),
+    paddingRight: scale(8),
   },
   bulletDot: {
     width: 4,
@@ -156,38 +156,38 @@ const styles = StyleSheet.create({
   bulletText: {
     flex: 1,
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: '#777777',
-    lineHeight: 20,
+    lineHeight: fontScale(20),
   },
   primaryButton: {
     width: '100%',
-    height: 56,
-    borderRadius: 28,
+    height: scale(56),
+    borderRadius: scale(28),
     backgroundColor: COLORS.PRIMARY,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 12,
+    marginTop: scale(12),
   },
   primaryButtonText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.BACKGROUND,
   },
   secondaryButton: {
     width: '100%',
-    height: 56,
-    borderRadius: 28,
+    height: scale(56),
+    borderRadius: scale(28),
     backgroundColor: COLORS.BACKGROUND_ELEMENT,
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.05)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 12,
+    marginTop: scale(12),
   },
   secondaryButtonText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.PRIMARY,
   },
 });

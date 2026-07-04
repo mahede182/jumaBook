@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 import { Construction } from 'lucide-react-native';
 import { COLORS, FONTS } from '@/constants/theme';
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 interface UnderConstructionProps {
   style?: ViewStyle;
@@ -24,15 +25,15 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.BACKGROUND,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: scale(20),
   },
   iconContainer: {
-    marginBottom: 24,
+    marginBottom: scale(24),
     alignItems: 'center',
   },
   title: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 20,
+    fontSize: fontScale(20),
     color: COLORS.TEXT,
     textAlign: 'center',
   },

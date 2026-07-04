@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BOOKINGS, MONTHS, WEEKDAYS, FULL_WEEKDAYS } from '@/constants/data';
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
 import BookingCard from '@/features/booking/components/BookingCard';
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 const formatMonthYear = (date: Date) => `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 const formatDayOfWeek = (date: Date) => WEEKDAYS[date.getDay()];
@@ -176,9 +177,9 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.THREE,
   },
   backButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: scale(44),
+    height: scale(44),
+    borderRadius: scale(22),
     borderWidth: 1,
     borderColor: COLORS.BORDER,
     justifyContent: 'center',
@@ -186,14 +187,14 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 18,
+    fontSize: fontScale(18),
     color: COLORS.TEXT,
   },
   placeholder: {
-    width: 44,
+    width: scale(44),
   },
   scrollContent: {
-    paddingBottom: 120,
+    paddingBottom: scale(120),
   },
   bookingWrapper: {
     backgroundColor: '#F9F9F9',
@@ -207,14 +208,14 @@ const styles = StyleSheet.create({
   currentDatePill: {
     backgroundColor: '#FFF1F2',
     marginHorizontal: SPACING.FOUR,
-    paddingVertical: 12,
-    borderRadius: 8,
+    paddingVertical: scale(12),
+    borderRadius: scale(8),
     alignItems: 'center',
     marginBottom: SPACING.FIVE,
   },
   currentDateText: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: '#E11D48',
   },
   currentDateBold: {
@@ -226,21 +227,21 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 20,
+    fontSize: fontScale(20),
     color: COLORS.TEXT,
-    marginBottom: 4,
+    marginBottom: scale(4),
   },
   sectionSubtitle: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: '#666',
-    marginBottom: 24,
+    marginBottom: scale(24),
   },
   monthRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: scale(24),
   },
   monthTextRow: {
     flexDirection: 'row',
@@ -248,111 +249,111 @@ const styles = StyleSheet.create({
   },
   monthText: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.TEXT,
-    marginRight: 4,
+    marginRight: scale(4),
   },
   arrowsRow: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   arrowSpacing: {
-    marginRight: 16,
+    marginRight: scale(16),
   },
   calendarRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    paddingHorizontal: 8,
+    paddingHorizontal: scale(8),
   },
   calendarDay: {
     alignItems: 'center',
-    paddingTop: 8,
+    paddingTop: scale(8),
   },
   calendarDayActiveWrapper: {
     alignItems: 'center',
   },
   calendarDayActive: {
     backgroundColor: '#157E4B',
-    borderRadius: 22,
-    paddingTop: 10,
-    paddingBottom: 4,
+    borderRadius: scale(22),
+    paddingTop: scale(10),
+    paddingBottom: scale(4),
     alignItems: 'center',
-    width: 44,
+    width: scale(44),
   },
   dayLabel: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: COLORS.TEXT,
-    marginBottom: 12,
+    marginBottom: scale(12),
   },
   dayLabelActive: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: COLORS.BACKGROUND,
-    marginBottom: 8,
+    marginBottom: scale(8),
   },
   dateLabelInactive: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: '#999',
-    marginBottom: 8,
+    marginBottom: scale(8),
   },
   dateCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: scale(36),
+    height: scale(36),
+    borderRadius: scale(18),
     backgroundColor: COLORS.BACKGROUND,
     justifyContent: 'center',
     alignItems: 'center',
   },
   dateLabelActive: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: '#157E4B',
   },
   dotGroup: {
     flexDirection: 'row',
-    gap: 4,
-    marginTop: 8,
+    gap: scale(4),
+    marginTop: scale(8),
   },
   dot: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
+    width: scale(4),
+    height: scale(4),
+    borderRadius: scale(2),
     backgroundColor: '#E5E5E5',
   },
   dotDark: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
+    width: scale(4),
+    height: scale(4),
+    borderRadius: scale(2),
     backgroundColor: COLORS.TEXT,
   },
   timeSlotBox: {
     backgroundColor: '#F6F6F6',
-    borderRadius: 12,
+    borderRadius: scale(12),
     paddingVertical: SPACING.THREE,
     paddingHorizontal: SPACING.FOUR,
   },
   timeSlotLabel: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: '#666',
-    marginBottom: 8,
+    marginBottom: scale(8),
   },
   timeSlotRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: scale(8),
   },
   timeSlotValue: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.TEXT,
   },
   timeSlotWarning: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: '#E11D48',
   },
   bottomBar: {
@@ -374,26 +375,26 @@ const styles = StyleSheet.create({
   },
   bottomBarDate: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: COLORS.TEXT,
-    marginBottom: 2,
+    marginBottom: scale(2),
   },
   bottomBarTime: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: '#666',
   },
   submitButton: {
     backgroundColor: COLORS.PRIMARY,
-    paddingHorizontal: 24,
-    paddingVertical: 14,
-    borderRadius: 28,
+    paddingHorizontal: scale(24),
+    paddingVertical: scale(14),
+    borderRadius: scale(28),
     alignItems: 'center',
     justifyContent: 'center',
   },
   submitButtonText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.BACKGROUND,
   },
 });

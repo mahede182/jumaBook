@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
+import { scale, fontScale } from '@/shared/utils/responsive';
 import { BOOKINGS, BookingData } from '@/constants/data';
 import BookingCard from '@/features/booking/components/BookingCard';
 import BookingOptionsModal from '@/features/booking/components/BookingOptionsModal';
@@ -33,21 +34,23 @@ export default function BookingScreen() {
   const isEmpty = activeBookings.length === 0;
 
   const renderEmptyState = () => (
-    <View style={styles.emptyContent}>
-      <View style={styles.emptyIconContainer}>
-        <Image 
-          source={IMAGES.EMPTY_BOOKING} 
-          style={{ width: 306, height: 186 }} 
-          contentFit="contain" 
-        />
+    <View style={styles.emptyContainer}>
+      <View style={styles.emptyContent}>
+        <View style={styles.emptyIconContainer}>
+          <Image 
+            source={IMAGES.EMPTY_BOOKING} 
+            style={{ width: scale(220), height: scale(134) }} 
+            contentFit="contain" 
+          />
+        </View>
+
+        <Text style={[styles.emptyTitle, { color: COLORS.TEXT }]}>{activeTab} booking empty</Text>
+        <Text style={[styles.emptySubtitle, { color: '#666666' }]}>
+          You didn't have any {activeTab.toLowerCase()} booking story here, please start your booking
+        </Text>
       </View>
 
-      <Text style={[styles.emptyTitle, { color: COLORS.TEXT }]}>{activeTab} booking empty</Text>
-      <Text style={[styles.emptySubtitle, { color: COLORS.TEXT }]}>
-        You didn't have any {activeTab.toLowerCase()} booking story here, please start your booking
-      </Text>
-
-      <Animated.View entering={FadeInUp.duration(600).delay(200).springify()} style={{ width: '100%' }}>
+      <Animated.View entering={FadeInUp.duration(600).delay(200).springify()} style={styles.buttonWrapper}>
         <Pressable
           onPress={startBooking}
           style={({ pressed }) => [
@@ -87,11 +90,11 @@ export default function BookingScreen() {
             { 
               backgroundColor: COLORS.PRIMARY, 
               position: 'absolute', 
-              width: '50%', 
-              height: '100%', 
-              top: 4, 
-              left: activeTab === 'Upcoming' ? 4 : '50%',
-              borderRadius: 26.5
+              top: scale(4),
+              bottom: scale(4),
+              left: activeTab === 'Upcoming' ? scale(4) : '50%',
+              right: activeTab === 'Upcoming' ? '50%' : scale(4),
+              borderRadius: scale(22)
             }
           ]} 
         />
@@ -102,7 +105,7 @@ export default function BookingScreen() {
           <Text
             style={[
               styles.segmentText,
-              activeTab === 'Upcoming' ? [styles.segmentTextActive, { color: COLORS.BACKGROUND }] : { color: COLORS.TEXT },
+              activeTab === 'Upcoming' ? [styles.segmentTextActive, { color: COLORS.BACKGROUND }] : { color: COLORS.PRIMARY },
             ]}
           >
             Upcoming
@@ -115,7 +118,7 @@ export default function BookingScreen() {
           <Text
             style={[
               styles.segmentText,
-              activeTab === 'Completed' ? [styles.segmentTextActive, { color: COLORS.BACKGROUND }] : { color: COLORS.TEXT },
+              activeTab === 'Completed' ? [styles.segmentTextActive, { color: COLORS.BACKGROUND }] : { color: COLORS.PRIMARY },
             ]}
           >
             Completed
@@ -192,17 +195,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: SPACING.THREE,
     marginBottom: SPACING.THREE,
-    height: 56,
+    height: scale(56),
   },
   headerTitle: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 20,
-    lineHeight: 24,
+    fontSize: fontScale(20),
+    lineHeight: fontScale(24),
   },
   plusButton: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: scale(56),
+    height: scale(56),
+    borderRadius: scale(28),
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -210,22 +213,22 @@ const styles = StyleSheet.create({
   segmentContainer: {
     flexDirection: 'row',
     marginHorizontal: SPACING.THREE,
-    borderRadius: 44,
-    height: 53,
-    padding: 4,
+    borderRadius: scale(44),
+    height: scale(53),
+    padding: scale(4),
     marginBottom: SPACING.THREE,
   },
   segmentTab: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 26.5,
+    borderRadius: scale(26.5),
   },
   segmentTabActive: {
   },
   segmentText: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 15.4,
+    fontSize: fontScale(15.4),
   },
   segmentTextActive: {
     fontFamily: FONTS.SEMI_BOLD,
@@ -234,42 +237,49 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.THREE,
     paddingBottom: SPACING.FIVE,
   },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingHorizontal: SPACING.THREE,
+    paddingBottom: SPACING.FOUR,
+  },
   emptyContent: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: SPACING.THREE,
-    marginTop: -80,
+    marginTop: scale(-40),
   },
   emptyIconContainer: {
-    marginBottom: 32,
+    marginBottom: scale(24),
     alignItems: 'center',
     justifyContent: 'center',
   },
   emptyTitle: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 28,
-    lineHeight: 30.8,
+    fontSize: fontScale(22),
     textAlign: 'center',
-    marginBottom: 16,
+    marginBottom: scale(12),
   },
   emptySubtitle: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: fontScale(14),
+    lineHeight: fontScale(20),
     textAlign: 'center',
-    marginBottom: 44,
     paddingHorizontal: SPACING.TWO,
   },
+  buttonWrapper: {
+    width: '100%',
+    paddingBottom: scale(16),
+  },
   ctaButton: {
-    height: 56,
-    borderRadius: 44,
+    height: scale(52),
+    borderRadius: scale(26),
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
   },
   ctaButtonText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 18,
+    fontSize: fontScale(16),
   },
 });

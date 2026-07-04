@@ -3,10 +3,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
 import { BottomBarProps } from '../../@types/booking.type';
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 export default function BottomBar({ price, onEditPress }: BottomBarProps) {
   const insets = useSafeAreaInsets();
-  const paddingBottom = Math.max(insets.bottom, 24);
+  const paddingBottom = Math.max(insets.bottom, scale(24));
 
   return (
     <View style={[styles.container, { paddingBottom }]}>
@@ -45,9 +46,9 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: -2 },
+        shadowOffset: { width: 0, height: scale(-2) },
         shadowOpacity: 0.05,
-        shadowRadius: 8,
+        shadowRadius: scale(8),
       },
       android: {
         elevation: 10,
@@ -59,35 +60,35 @@ const styles = StyleSheet.create({
   },
   fromText: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: '#666',
-    marginBottom: 2,
+    marginBottom: scale(2),
   },
   priceText: {
     fontFamily: FONTS.BOLD,
-    fontSize: 24,
+    fontSize: fontScale(24),
     color: COLORS.TEXT,
   },
   priceRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: scale(4),
   },
   currencyIcon: {
-    width: 20,
-    height: 20,
+    width: scale(20),
+    height: scale(20),
   },
   bookButton: {
     backgroundColor: COLORS.PRIMARY,
-    paddingHorizontal: 32,
-    paddingVertical: 14,
-    borderRadius: 28,
-    minWidth: 140,
+    paddingHorizontal: scale(32),
+    paddingVertical: scale(14),
+    borderRadius: scale(28),
+    minWidth: scale(140),
     alignItems: 'center',
   },
   bookButtonText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.BACKGROUND,
   },
 });

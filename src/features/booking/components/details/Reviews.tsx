@@ -5,6 +5,7 @@ import { Star } from 'lucide-react-native';
 
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
 import { REVIEWS_DATA } from '@/constants/data';
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 export default function Reviews() {
   return (
@@ -32,7 +33,7 @@ export default function Reviews() {
               ))}
             </View>
             <View style={styles.barTrack}>
-              <View style={[styles.barFill, { width: r.pct }]} />
+              <View style={[styles.barFill, { width: r.pct as any }]} />
             </View>
             <Text style={styles.pctText}>{r.pct}</Text>
           </View>
@@ -82,74 +83,74 @@ const styles = StyleSheet.create({
     borderTopColor: '#EEEEEE',
   },
   headerRow: {
-    marginBottom: 16,
+    marginBottom: scale(16),
   },
   title: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 18,
+    fontSize: fontScale(18),
     color: COLORS.TEXT,
   },
   scoreRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: scale(16),
   },
   scoreText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 24,
+    fontSize: fontScale(24),
     color: COLORS.TEXT,
-    marginLeft: 8,
+    marginLeft: scale(8),
   },
   barsContainer: {
-    marginBottom: 24,
+    marginBottom: scale(24),
   },
   barRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: scale(8),
   },
   starsLeft: {
     flexDirection: 'row',
-    width: 70,
+    width: scale(70),
   },
   barTrack: {
     flex: 1,
-    height: 6,
+    height: scale(6),
     backgroundColor: '#EEEEEE',
-    borderRadius: 3,
-    marginHorizontal: 12,
+    borderRadius: scale(3),
+    marginHorizontal: scale(12),
   },
   barFill: {
-    height: 6,
+    height: scale(6),
     backgroundColor: COLORS.STAR,
-    borderRadius: 3,
+    borderRadius: scale(3),
   },
   pctText: {
-    width: 32,
+    width: scale(32),
     fontFamily: FONTS.MEDIUM,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: COLORS.TEXT,
     textAlign: 'right',
   },
   reviewCard: {
-    marginBottom: 24,
+    marginBottom: scale(24),
   },
   reviewerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: scale(12),
   },
   reviewerAvatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 12,
+    width: scale(40),
+    height: scale(40),
+    borderRadius: scale(20),
+    marginRight: scale(12),
   },
   reviewerName: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 15,
+    fontSize: fontScale(15),
     color: COLORS.TEXT,
-    marginBottom: 2,
+    marginBottom: scale(2),
   },
   reviewStars: {
     flexDirection: 'row',
@@ -157,37 +158,37 @@ const styles = StyleSheet.create({
   },
   reviewTime: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: '#666',
-    marginLeft: 4,
+    marginLeft: scale(4),
   },
   reviewText: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: '#444',
-    lineHeight: 22,
-    marginBottom: 16,
+    lineHeight: fontScale(22),
+    marginBottom: scale(16),
   },
   photosRow: {
     flexDirection: 'row',
-    gap: 8,
+    gap: scale(8),
   },
   photo: {
     flex: 1,
     aspectRatio: 1,
-    borderRadius: 8,
+    borderRadius: scale(8),
   },
   showMoreBtn: {
     width: '100%',
-    height: 48,
-    borderRadius: 24,
+    height: scale(48),
+    borderRadius: scale(24),
     backgroundColor: 'rgba(5, 59, 41, 0.06)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   showMoreText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 15,
+    fontSize: fontScale(15),
     color: COLORS.PRIMARY,
   },
 });

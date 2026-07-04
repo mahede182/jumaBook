@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONTS, IMAGES } from '@/constants/theme';
 import { ITINERARY_DATA, ITINERARY_INFO } from '@/constants/data';
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 export default function Itinerary() {
   return (
@@ -71,59 +72,59 @@ const styles = StyleSheet.create({
   },
   bannerRow: {
     flexDirection: 'row',
-    marginBottom: 20,
-    gap: 24,
+    marginBottom: scale(20),
+    gap: scale(24),
   },
   bannerItem: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   bannerIcon: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: scale(32),
+    height: scale(32),
+    borderRadius: scale(16),
     backgroundColor: 'rgba(5, 59, 41, 0.06)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
+    marginRight: scale(12),
   },
   bannerLabel: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: '#666',
   },
   bannerValue: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: COLORS.TEXT,
   },
   mapSnippet: {
     width: '100%',
-    height: 120,
-    borderRadius: 12,
+    height: scale(120),
+    borderRadius: scale(12),
     overflow: 'hidden',
-    marginBottom: 24,
+    marginBottom: scale(24),
   },
   mapImage: {
     width: '100%',
     height: '100%',
   },
   timelineContainer: {
-    paddingLeft: 4,
+    paddingLeft: scale(4),
   },
   timelineRow: {
     flexDirection: 'row',
-    minHeight: 60,
+    minHeight: scale(60),
   },
   timelineLeft: {
     alignItems: 'center',
-    width: 24,
-    marginRight: 16,
+    width: scale(24),
+    marginRight: scale(16),
   },
   timelineDot: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: scale(24),
+    height: scale(24),
+    borderRadius: scale(12),
     backgroundColor: COLORS.TEXT,
     justifyContent: 'center',
     alignItems: 'center',
@@ -131,35 +132,35 @@ const styles = StyleSheet.create({
   },
   dotText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 11,
+    fontSize: fontScale(11),
     color: COLORS.BACKGROUND,
   },
   timelineLine: {
-    width: 2,
+    width: scale(2),
     flex: 1,
     backgroundColor: '#EEEEEE',
-    marginVertical: 4,
+    marginVertical: scale(4),
   },
   timelineContentRow: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingBottom: 24,
+    paddingBottom: scale(24),
   },
   timelineContent: {
     flex: 1,
-    paddingRight: 8,
+    paddingRight: scale(8),
   },
   timelineTitle: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.TEXT,
-    marginBottom: 4,
+    marginBottom: scale(4),
   },
   timelineSubtitle: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 13,
+    fontSize: fontScale(13),
     color: '#666',
   },
 });

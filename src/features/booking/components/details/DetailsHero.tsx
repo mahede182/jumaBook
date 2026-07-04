@@ -2,19 +2,19 @@ import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { ChevronLeft, Heart, Share2, Star } from 'lucide-react-native';
 import React from 'react';
-import { Dimensions, FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { COLORS, FONTS } from '@/constants/theme';
 import { removeNewlines } from '@/utils/string';
 import { DETAILS_CAROUSEL_IMAGES } from '@/constants/data';
 import { DetailsHeroProps } from '../../@types/booking.type';
-
-const { width } = Dimensions.get('window');
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: DetailsHeroProps) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   const images = [
@@ -38,7 +38,7 @@ export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: D
         renderItem={({ item }) => (
           <Image
             source={{ uri: item }}
-            style={styles.carouselImage}
+            style={[styles.carouselImage, { width }]}
             contentFit="cover"
           />
         )}
@@ -113,22 +113,21 @@ export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: D
 
 const styles = StyleSheet.create({
   container: {
-    width: width,
-    height: 380,
+    width: '100%',
+    height: scale(380),
     backgroundColor: '#333',
   },
   carouselImage: {
-    width: width,
-    height: 380,
+    height: scale(380),
   },
   overlay: {
     ...StyleSheet.absoluteFill,
     backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'space-between',
-    paddingTop: 50,
-    paddingBottom: 24,
-    paddingLeft: 16,
-    paddingRight: 4,
+    paddingTop: scale(50),
+    paddingBottom: scale(24),
+    paddingLeft: scale(16),
+    paddingRight: scale(4),
   },
   headerRow: {
     flexDirection: 'row',
@@ -137,12 +136,12 @@ const styles = StyleSheet.create({
   },
   headerRight: {
     flexDirection: 'column',
-    gap: 12,
+    gap: scale(12),
   },
   iconButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: scale(40),
+    height: scale(40),
+    borderRadius: scale(20),
     backgroundColor: 'rgba(0,0,0,0.6)',
     justifyContent: 'center',
     alignItems: 'center',
@@ -150,23 +149,23 @@ const styles = StyleSheet.create({
   indicatorContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: scale(8),
   },
   ratingAndIndicatorRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: scale(8),
   },
   indicatorDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    width: scale(8),
+    height: scale(8),
+    borderRadius: scale(4),
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
   },
   indicatorDotActive: {
     backgroundColor: COLORS.BACKGROUND,
-    width: 16,
+    width: scale(16),
   },
   bottomOverlay: {
     width: '100%',
@@ -174,23 +173,23 @@ const styles = StyleSheet.create({
   tagsRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
-    marginTop: 16,
+    gap: scale(8),
+    marginTop: scale(16),
   },
   tag: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
+    paddingHorizontal: scale(12),
+    paddingVertical: scale(6),
+    borderRadius: scale(16),
     backgroundColor: 'rgba(0,0,0,0.7)',
   },
   tagText: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: COLORS.BACKGROUND,
   },
   title: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 26,
+    fontSize: fontScale(26),
     color: COLORS.BACKGROUND,
   },
   ratingRow: {
@@ -199,7 +198,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: COLORS.BACKGROUND,
     marginLeft: 4,
   },
@@ -212,11 +211,11 @@ const styles = StyleSheet.create({
     height: 4,
     borderRadius: 2,
     backgroundColor: 'rgba(255,255,255,0.6)',
-    marginHorizontal: 8,
+    marginHorizontal: scale(8),
   },
   locationText: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 14,
+    fontSize: fontScale(14),
     color: 'rgba(255,255,255,0.9)',
   },
 });

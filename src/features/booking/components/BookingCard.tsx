@@ -8,6 +8,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
 import { BookingCardProps } from '../@types/booking.type';
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 export default function BookingCard({ booking, onOptionsPress, style, index = 0 }: BookingCardProps) {
   const optionsRef = useRef<View>(null);
@@ -29,10 +30,10 @@ export default function BookingCard({ booking, onOptionsPress, style, index = 0 
           resizeMode="cover"
         />
         <Pressable style={styles.heartButton} hitSlop={8}>
-          <Heart size={20} color={COLORS.BACKGROUND} />
+          <Heart size={scale(20)} color={COLORS.BACKGROUND} />
         </Pressable>
         <Pressable style={styles.shareButton} hitSlop={8}>
-          <Share2 size={20} color={COLORS.BACKGROUND} />
+          <Share2 size={scale(20)} color={COLORS.BACKGROUND} />
         </Pressable>
       </View>
 
@@ -90,7 +91,7 @@ export default function BookingCard({ booking, onOptionsPress, style, index = 0 
               onPress={handleOptionsPress}
               hitSlop={8}
             >
-              <MoreVertical size={20} color={COLORS.TEXT} />
+              <MoreVertical size={scale(16)} color={COLORS.TEXT} />
             </Pressable>
           </View>
         </View>
@@ -107,42 +108,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    width: 176,
-    height: 140,
-    marginRight: 12,
+    width: scale(144),
+    height: scale(136),
+    marginRight: scale(12),
   },
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 12,
+    borderRadius: scale(12),
   },
   heartButton: {
     position: 'absolute',
-    top: 8,
-    left: 8,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    top: scale(8),
+    left: scale(8),
+    padding: scale(4),
   },
   shareButton: {
     position: 'absolute',
-    top: 8,
-    right: 8,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    top: scale(8),
+    right: scale(8),
+    padding: scale(4),
   },
   contentContainer: {
     flex: 1,
-    height: 133,
+    height: scale(136),
     justifyContent: 'space-between',
-    paddingVertical: 2,
+    paddingVertical: scale(2),
   },
   topRow: {
     flexDirection: 'row',
@@ -157,27 +148,27 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: COLORS.TEXT,
   },
   datePill: {
     backgroundColor: COLORS.ACCENT,
     paddingHorizontal: SPACING.TWO,
-    borderRadius: 24,
-    height: 16,
+    borderRadius: scale(24),
+    height: scale(16),
     justifyContent: 'center',
     alignItems: 'center',
   },
   dateText: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 10,
+    fontSize: fontScale(10),
     color: COLORS.BACKGROUND,
     includeFontPadding: false,
   },
   title: {
-    fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 15,
-    lineHeight: 20,
+    fontFamily: FONTS.BOLD,
+    fontSize: fontScale(15),
+    lineHeight: fontScale(20),
     color: COLORS.TEXT,
   },
   bottomRow: {
@@ -196,24 +187,24 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   currencyOriginal: {
-    width: 12,
-    height: 12,
+    width: scale(12),
+    height: scale(12),
   },
   currencyDiscounted: {
-    width: 16,
-    height: 16,
+    width: scale(16),
+    height: scale(16),
   },
   originalPrice: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: COLORS.ACCENT,
     textDecorationLine: 'line-through',
   },
   discountedPrice: {
     fontFamily: FONTS.BOLD,
-    fontSize: 20,
+    fontSize: fontScale(20),
     color: COLORS.TEXT,
-    lineHeight: 22,
+    lineHeight: fontScale(22),
   },
   discountTagWrapper: {
     flexDirection: 'row',
@@ -245,13 +236,13 @@ const styles = StyleSheet.create({
   },
   discountTagText: {
     fontFamily: FONTS.MEDIUM,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: COLORS.BACKGROUND,
   },
   optionsButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: scale(32),
+    height: scale(32),
+    borderRadius: scale(16),
     backgroundColor: COLORS.BACKGROUND_ELEMENT,
     justifyContent: 'center',
     alignItems: 'center',

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
 import { HostCardProps } from '../../@types/booking.type';
+import { scale, fontScale } from '@/shared/utils/responsive';
 
 export default function HostCard({ host }: HostCardProps) {
   return (
@@ -36,14 +37,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: SPACING.THREE,
     backgroundColor: '#FAFAFA',
-    borderRadius: 16,
+    borderRadius: scale(16),
     marginBottom: SPACING.FOUR,
   },
   avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    marginRight: 12,
+    width: scale(48),
+    height: scale(48),
+    borderRadius: scale(24),
+    marginRight: scale(12),
   },
   content: {
     flex: 1,
@@ -55,9 +56,9 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: FONTS.SEMI_BOLD,
-    fontSize: 16,
+    fontSize: fontScale(16),
     color: COLORS.TEXT,
-    marginRight: 8,
+    marginRight: scale(8),
   },
   ratingBadge: {
     flexDirection: 'row',
@@ -65,19 +66,19 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: '#666',
-    marginLeft: 4,
+    marginLeft: scale(4),
   },
   subtitle: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 13,
+    fontSize: fontScale(13),
     color: '#666',
-    marginBottom: 2,
+    marginBottom: scale(2),
   },
   languageText: {
     fontFamily: FONTS.REGULAR,
-    fontSize: 12,
+    fontSize: fontScale(12),
     color: '#666',
   },
 });
