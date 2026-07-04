@@ -46,7 +46,7 @@ export const BOOKINGS: BookingData[] = [
     discountedPrice: '38.000',
     discountTag: '5% off',
     status: 'Upcoming',
-    imageUrl: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&q=80',
   },
   {
     id: '4',
@@ -58,7 +58,7 @@ export const BOOKINGS: BookingData[] = [
     discountedPrice: '15.000',
     discountTag: '',
     status: 'Completed',
-    imageUrl: 'https://images.unsplash.com/photo-1582650625101-7290ce4a3317?w=400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1549643276-fdf2fab574f5?w=400&q=80',
   },
   {
     id: '5',
@@ -70,6 +70,6 @@ export const BOOKINGS: BookingData[] = [
     discountedPrice: '19.800',
     discountTag: '10% off',
     status: 'Completed',
-    imageUrl: 'https://images.unsplash.com/photo-1555529902-536138ab4c10?w=400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=80',
   },
 ];

@@ -1,7 +1,6 @@
-import React from 'react';
-import { Modal, StyleSheet, Text, View, Pressable, TouchableWithoutFeedback, Dimensions, Image as RNImage } from 'react-native';
+import { Dimensions, Modal, Pressable, Image as RNImage, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 
-import { COLORS, FONTS, SPACING, IMAGES } from '@/constants/theme';
+import { COLORS, FONTS, IMAGES } from '@/constants/theme';
 
 export interface CancelBookingModalProps {
   visible: boolean;
@@ -23,13 +22,13 @@ export default function CancelBookingModal({ visible, onClose, onConfirm }: Canc
         <View style={styles.overlay}>
           <TouchableWithoutFeedback>
             <View style={styles.modalContent}>
-              
+
               {/* Top Section */}
               <View style={styles.topSection}>
-                <RNImage 
-                  source={IMAGES.ALERT} 
-                  style={styles.alertIcon} 
-                  resizeMode="contain" 
+                <RNImage
+                  source={IMAGES.ALERT}
+                  style={styles.alertIcon}
+                  resizeMode="contain"
                 />
 
                 <Text style={styles.title}>Cancellation policy</Text>
@@ -43,7 +42,7 @@ export default function CancelBookingModal({ visible, onClose, onConfirm }: Canc
               {/* Bottom Section */}
               <View style={styles.bottomSection}>
                 <Text style={styles.sectionTitle}>Requirement</Text>
-                
+
                 <View style={styles.bulletRow}>
                   <View style={styles.bulletDot} />
                   <Text style={styles.bulletText}>
@@ -132,8 +131,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   divider: {
-    height: 1,
-    backgroundColor: 'rgba(0,0,0,0.08)',
+    height: 2,
+    backgroundColor: '#f1f1f1',
     width: '100%',
   },
   bottomSection: {

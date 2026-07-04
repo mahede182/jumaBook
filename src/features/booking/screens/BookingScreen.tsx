@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { Plus } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native';
@@ -10,12 +11,20 @@ import BookingCard from '@/features/booking/components/BookingCard';
 import BookingOptionsModal from '@/features/booking/components/BookingOptionsModal';
 import CancelBookingModal from '@/features/booking/components/CancelBookingModal';
 
+let globalHasStartedBooking = false;
+
 export default function BookingScreen() {
+  const router = useRouter();
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<'Upcoming' | 'Completed'>('Upcoming');
   const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
   const [selectedBookingPosition, setSelectedBookingPosition] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
-  const [hasStartedBooking, setHasStartedBooking] = useState(false);
+  const [hasStartedBooking, setHasStartedBooking] = useState(globalHasStartedBooking);
+
+  const startBooking = () => {
+    globalHasStartedBooking = true;
+    setHasStartedBooking(true);
+  };
   const [isCancelModalVisible, setIsCancelModalVisible] = useState(false);
   const [bookingToCancel, setBookingToCancel] = useState<string | null>(null);
 
@@ -38,7 +47,7 @@ export default function BookingScreen() {
       </Text>
 
       <Pressable
-        onPress={() => setHasStartedBooking(true)}
+        onPress={startBooking}
         style={({ pressed }) => [
           styles.ctaButton,
           { backgroundColor: COLORS.PRIMARY, opacity: pressed ? 0.8 : 1 },
@@ -55,7 +64,7 @@ export default function BookingScreen() {
     <View style={[styles.container, { backgroundColor: COLORS.BACKGROUND }]}>
       <View style={[styles.header, { marginTop: insets.top + SPACING.THREE }]}>
         <Pressable
-          onPress={() => setHasStartedBooking(true)}
+          onPress={startBooking}
           style={({ pressed }) => [
             styles.plusButton,
             { borderColor: COLORS.BORDER, opacity: pressed ? 0.7 : 1 },
@@ -135,7 +144,13 @@ export default function BookingScreen() {
           setSelectedBookingPosition(null);
           setIsCancelModalVisible(true);
         }}
-        onReschedulePress={() => console.log('Reschedule', selectedBookingId)}
+        onReschedulePress={() => {
+          if (selectedBookingId) {
+            router.push(`/booking/reschedule/${selectedBookingId}`);
+            setSelectedBookingId(null);
+            setSelectedBookingPosition(null);
+          }
+        }}
       />
 
       <CancelBookingModal

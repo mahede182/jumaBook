@@ -2,12 +2,14 @@ import { Image as ExpoImage } from 'expo-image';
 import { Heart, MoreVertical, Share2, Star } from 'lucide-react-native';
 import { useRef } from 'react';
 import { Pressable, Image as RNImage, StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 
 import { COLORS, FONTS, IMAGES, SPACING } from '@/constants/theme';
 import { BookingCardProps } from '../@types/booking.type';
 
 export default function BookingCard({ booking, onOptionsPress, style }: BookingCardProps) {
   const optionsRef = useRef<View>(null);
+  const router = useRouter();
 
   const handleOptionsPress = () => {
     optionsRef.current?.measureInWindow((x, y, width, height) => {
@@ -16,13 +18,13 @@ export default function BookingCard({ booking, onOptionsPress, style }: BookingC
   };
 
   return (
-    <View style={[styles.card, style]}>
+    <Pressable style={[styles.card, style]} onPress={() => router.push(`/booking/${booking.id}`)}>
       {/* Image Block */}
       <View style={styles.imageContainer}>
-        <ExpoImage
+        <RNImage
           source={{ uri: booking.imageUrl }}
           style={styles.image}
-          contentFit="cover"
+          resizeMode="cover"
         />
         {/* Heart Icon Overlay */}
         <Pressable style={styles.heartButton} hitSlop={8}>
@@ -44,9 +46,11 @@ export default function BookingCard({ booking, onOptionsPress, style }: BookingC
               {booking.rating} ({booking.reviewsCount})
             </Text>
           </View>
-          <View style={styles.datePill}>
-            <Text style={styles.dateText}>{booking.date}</Text>
-          </View>
+          {booking.status !== 'Completed' && (
+            <View style={styles.datePill}>
+              <Text style={styles.dateText}>{booking.date}</Text>
+            </View>
+          )}
         </View>
 
         {/* Title */}
@@ -96,7 +100,7 @@ export default function BookingCard({ booking, onOptionsPress, style }: BookingC
           </View>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
@@ -107,8 +111,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    width: 176, // Increased width
-    height: 140, // Increased height proportionally
+    width: 176,
+    height: 140,
     marginRight: 12,
   },
   image: {
@@ -148,6 +152,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    flexWrap: 'wrap',
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -254,6 +259,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.BACKGROUND_ELEMENT,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 'auto', // push to far right
+    marginLeft: 'auto',
   },
 });

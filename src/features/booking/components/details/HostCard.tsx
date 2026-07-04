@@ -1,0 +1,92 @@
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { Image } from 'expo-image';
+import { Star } from 'lucide-react-native';
+
+import { COLORS, FONTS, SPACING } from '@/constants/theme';
+
+interface HostCardProps {
+  host: {
+    name: string;
+    rating: number;
+    isSuperhost: boolean;
+    yearsHosting: number;
+  };
+}
+
+export default function HostCard({ host }: HostCardProps) {
+  return (
+    <View style={styles.container}>
+      <Image 
+        source={{ uri: 'https://i.pravatar.cc/150?u=a042581f4e29026024d' }} 
+        style={styles.avatar} 
+      />
+      
+      <View style={styles.content}>
+        <View style={styles.nameRow}>
+          <Text style={styles.name}>{host.name}</Text>
+          <View style={styles.ratingBadge}>
+            <Star size={12} color={COLORS.STAR} fill={COLORS.STAR} />
+            <Text style={styles.ratingText}>{host.rating} (657)</Text>
+          </View>
+        </View>
+        <Text style={styles.subtitle}>
+          Experience: {host.yearsHosting} years
+        </Text>
+        <Text style={styles.languageText}>Languages: English (Fluent) Arabic (Fluent)</Text>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: SPACING.THREE,
+    backgroundColor: '#FAFAFA',
+    borderRadius: 16,
+    marginBottom: SPACING.FOUR,
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    marginRight: 12,
+  },
+  content: {
+    flex: 1,
+  },
+  nameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  name: {
+    fontFamily: FONTS.SEMI_BOLD,
+    fontSize: 16,
+    color: COLORS.TEXT,
+    marginRight: 8,
+  },
+  ratingBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingText: {
+    fontFamily: FONTS.REGULAR,
+    fontSize: 12,
+    color: '#666',
+    marginLeft: 4,
+  },
+  subtitle: {
+    fontFamily: FONTS.REGULAR,
+    fontSize: 13,
+    color: '#666',
+    marginBottom: 2,
+  },
+  languageText: {
+    fontFamily: FONTS.REGULAR,
+    fontSize: 12,
+    color: '#666',
+  },
+});

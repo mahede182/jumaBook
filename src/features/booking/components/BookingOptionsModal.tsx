@@ -1,5 +1,5 @@
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
-import { Modal, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View, Dimensions, Platform } from 'react-native';
+import { Dimensions, Modal, Platform, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { BookingOptionsModalProps } from '../@types/booking.type';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -11,18 +11,11 @@ export default function BookingOptionsModal({
   onCancelPress,
   onReschedulePress,
 }: BookingOptionsModalProps) {
-  
-  // Calculate absolute position
+
   const getPopoverStyle = () => {
     if (!position) return {};
-    
-    // Standard margin from the edge of the screen
     const edgeMargin = SPACING.THREE;
-    
-    // Position it below the button
-    const top = position.y + position.height + (Platform.OS === 'ios' ? 0 : 8); // adjustments for platform measurement differences
-    
-    // Align to the right side, giving it comfortable spacing from the edge
+    const top = position.y + position.height + (Platform.OS === 'ios' ? 0 : 8);
     const right = Math.max(SPACING.FIVE, SCREEN_WIDTH - (position.x + position.width - 8));
 
     return {
