@@ -84,7 +84,6 @@ export default function BookingCard({ booking, onOptionsPress, style, index = 0 
             </View>
           )}
 
-          {/* Options Button */}
           <View ref={optionsRef} collapsable={false}>
             <Pressable
               style={styles.optionsButton}

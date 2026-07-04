@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Clock, Ticket } from 'lucide-react-native';
 
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
+import { KEY_INFO_DATA } from '@/constants/data';
 
 export default function KeyInfo() {
   return (
@@ -13,7 +14,7 @@ export default function KeyInfo() {
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.subtitle}>Duration</Text>
-          <Text style={styles.title}>11 Hours</Text>
+          <Text style={styles.title}>{KEY_INFO_DATA.duration}</Text>
         </View>
       </View>
 
@@ -22,8 +23,8 @@ export default function KeyInfo() {
           <Ticket size={20} color={COLORS.TEXT} />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.subtitle}>Group size ( Up to 4 guests per session )</Text>
-          <Text style={styles.title}>Snack included</Text>
+          <Text style={styles.subtitle}>{KEY_INFO_DATA.groupSizeLabel}</Text>
+          <Text style={styles.title}>{KEY_INFO_DATA.groupSizeValue}</Text>
         </View>
       </View>
     </View>

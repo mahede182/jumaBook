@@ -176,7 +176,6 @@ export default function BookingScreen() {
           console.log('Confirmed Cancellation for', bookingToCancel);
           setIsCancelModalVisible(false);
           setBookingToCancel(null);
-          // TODO: dispatch cancel action or handle via RTK Query mutation
         }}
       />
     </View>
@@ -240,7 +239,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: SPACING.THREE,
-    marginTop: -80, // visual adjustment to match figma layout centering
+    marginTop: -80,
   },
   emptyIconContainer: {
     marginBottom: 32,

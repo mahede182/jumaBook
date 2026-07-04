@@ -23,7 +23,6 @@ export default function CancelBookingModal({ visible, onClose, onConfirm }: Canc
           <TouchableWithoutFeedback>
             <View style={styles.modalContent}>
 
-              {/* Top Section */}
               <View style={styles.topSection}>
                 <RNImage
                   source={IMAGES.ALERT}
@@ -39,7 +38,6 @@ export default function CancelBookingModal({ visible, onClose, onConfirm }: Canc
 
               <View style={styles.divider} />
 
-              {/* Bottom Section */}
               <View style={styles.bottomSection}>
                 <Text style={styles.sectionTitle}>Requirement</Text>
 

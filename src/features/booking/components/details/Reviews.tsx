@@ -4,30 +4,22 @@ import { Image } from 'expo-image';
 import { Star } from 'lucide-react-native';
 
 import { COLORS, FONTS, SPACING } from '@/constants/theme';
+import { REVIEWS_DATA } from '@/constants/data';
 
 export default function Reviews() {
-  const ratings = [
-    { stars: 5, pct: '70%' },
-    { stars: 4, pct: '12%' },
-    { stars: 3, pct: '3%' },
-    { stars: 2, pct: '2%' },
-    { stars: 1, pct: '1%' },
-  ];
-
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Text style={styles.title}>Rating & reviews (617)</Text>
+        <Text style={styles.title}>Rating & reviews ({REVIEWS_DATA.count})</Text>
       </View>
 
       <View style={styles.scoreRow}>
         <Star size={24} color={COLORS.STAR} fill={COLORS.STAR} />
-        <Text style={styles.scoreText}>4.95 (617)</Text>
+        <Text style={styles.scoreText}>{REVIEWS_DATA.score} ({REVIEWS_DATA.count})</Text>
       </View>
 
-      {/* Bars */}
       <View style={styles.barsContainer}>
-        {ratings.map((r) => (
+        {REVIEWS_DATA.ratings.map((r) => (
           <View key={r.stars} style={styles.barRow}>
             <View style={styles.starsLeft}>
               {[...Array(5)].map((_, i) => (
@@ -47,29 +39,32 @@ export default function Reviews() {
         ))}
       </View>
 
-      {/* Featured Review */}
       <View style={styles.reviewCard}>
         <View style={styles.reviewerRow}>
-          <Image source={{ uri: 'https://i.pravatar.cc/150?u=haydn' }} style={styles.reviewerAvatar} />
+          <Image source={{ uri: REVIEWS_DATA.featured.avatar }} style={styles.reviewerAvatar} />
           <View>
-            <Text style={styles.reviewerName}>Haydn S.</Text>
+            <Text style={styles.reviewerName}>{REVIEWS_DATA.featured.name} S.</Text>
             <View style={styles.reviewStars}>
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={12} color={COLORS.STAR} fill={COLORS.STAR} />
+                <Star 
+                  key={i} 
+                  size={12} 
+                  color={i < REVIEWS_DATA.featured.rating ? COLORS.STAR : '#DDD'} 
+                  fill={i < REVIEWS_DATA.featured.rating ? COLORS.STAR : 'transparent'} 
+                />
               ))}
               <Text style={styles.reviewTime}> • 4 weeks ago</Text>
             </View>
           </View>
         </View>
         <Text style={styles.reviewText}>
-          Cruising up past the cliffs as the sun returns in the late afternoon is an experience in a place of absolute historical wonders that is truly awe inspiring.
+          {REVIEWS_DATA.featured.comment}
         </Text>
         
-        {/* Photos */}
         <View style={styles.photosRow}>
-          <Image source={{ uri: 'https://images.unsplash.com/photo-1549643276-fdf2fab574f5?w=200&q=80' }} style={styles.photo} />
-          <Image source={{ uri: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=200&q=80' }} style={styles.photo} />
-          <Image source={{ uri: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=200&q=80' }} style={styles.photo} />
+          {REVIEWS_DATA.featured.photos.map((p, idx) => (
+            <Image key={idx} source={{ uri: p }} style={styles.photo} />
+          ))}
         </View>
       </View>
 

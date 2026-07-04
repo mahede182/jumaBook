@@ -73,3 +73,55 @@ export const BOOKINGS: BookingData[] = [
     imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=80',
   },
 ];
+
+export interface ItineraryItem {
+  id: number;
+  title: string;
+  subtitle: string;
+  type: string;
+  stopNumber?: number;
+}
+
+export const ITINERARY_DATA: ItineraryItem[] = [
+  { id: 1, title: 'Madina munawara', subtitle: 'Start point', type: 'start' },
+  { id: 2, title: 'Al-Masjid an-Nabawi', subtitle: '', type: 'stop', stopNumber: 1 },
+  { id: 3, title: 'Jannat al-Baqi (Baqi Cemetery)', subtitle: 'Tickets included', type: 'stop', stopNumber: 2 },
+  { id: 4, title: 'Masjid Quba', subtitle: '', type: 'stop', stopNumber: 3 },
+  { id: 5, title: 'Masjid Qiblatain', subtitle: '', type: 'stop', stopNumber: 4 },
+  { id: 6, title: 'Dar Al-Madina Museum', subtitle: 'End point (Ending point would be start point)', type: 'end' },
+];
+
+export const ITINERARY_INFO = {
+  duration: '5 Hours',
+  transport: 'AC Minibus',
+};
+
+export const REVIEWS_DATA = {
+  score: '4.95',
+  count: '617',
+  ratings: [
+    { stars: 5, pct: '70%' },
+    { stars: 4, pct: '12%' },
+    { stars: 3, pct: '3%' },
+    { stars: 2, pct: '2%' },
+    { stars: 1, pct: '1%' },
+  ],
+  featured: {
+    name: 'Haydn',
+    date: '10 June 2023',
+    rating: 5,
+    avatar: 'https://i.pravatar.cc/150?u=haydn',
+    comment: 'Cruising up past the cliffs as the sun returns in the late afternoon is an experience in a place of absolute historical wonders that is truly awe inspiring.',
+    photos: [
+      'https://images.unsplash.com/photo-1549643276-fdf2fab574f5?w=200&q=80',
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=200&q=80',
+      'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=200&q=80',
+    ],
+  },
+};
+
+export const KEY_INFO_DATA = {
+  duration: '11 Hours',
+  groupSizeLabel: 'Group size ( Up to 4 guests per session )',
+  groupSizeValue: 'Snack included',
+};

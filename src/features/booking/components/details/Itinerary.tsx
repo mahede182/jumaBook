@@ -2,20 +2,11 @@ import { Bus, MapPin, Flag, ChevronRight } from 'lucide-react-native';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONTS, IMAGES } from '@/constants/theme';
-
-const itineraryData = [
-  { id: 1, title: 'Madina munawara', subtitle: 'Start point', type: 'start' },
-  { id: 2, title: 'Al-Masjid an-Nabawi', subtitle: '', type: 'stop', stopNumber: 1 },
-  { id: 3, title: 'Jannat al-Baqi (Baqi Cemetery)', subtitle: 'Tickets included', type: 'stop', stopNumber: 2 },
-  { id: 4, title: 'Masjid Quba', subtitle: '', type: 'stop', stopNumber: 3 },
-  { id: 5, title: 'Masjid Qiblatain', subtitle: '', type: 'stop', stopNumber: 4 },
-  { id: 6, title: 'Dar Al-Madina Museum', subtitle: 'End point (Ending point would be start point)', type: 'end' },
-];
+import { ITINERARY_DATA, ITINERARY_INFO } from '@/constants/data';
 
 export default function Itinerary() {
   return (
     <View style={styles.container}>
-      {/* Top Banner */}
       <View style={styles.bannerRow}>
         <View style={styles.bannerItem}>
           <View style={styles.bannerIcon}>
@@ -23,7 +14,7 @@ export default function Itinerary() {
           </View>
           <View>
             <Text style={styles.bannerLabel}>Total duration</Text>
-            <Text style={styles.bannerValue}>5 Hours</Text>
+            <Text style={styles.bannerValue}>{ITINERARY_INFO.duration}</Text>
           </View>
         </View>
         <View style={styles.bannerItem}>
@@ -32,7 +23,7 @@ export default function Itinerary() {
           </View>
           <View>
             <Text style={styles.bannerLabel}>Transport provided</Text>
-            <Text style={styles.bannerValue}>AC Minibus</Text>
+            <Text style={styles.bannerValue}>{ITINERARY_INFO.transport}</Text>
           </View>
         </View>
       </View>
@@ -45,22 +36,19 @@ export default function Itinerary() {
         />
       </View>
 
-      {/* Timeline Steps */}
       <View style={styles.timelineContainer}>
-        {itineraryData.map((item, index) => (
+        {ITINERARY_DATA.map((item, index) => (
           <View key={item.id} style={styles.timelineRow}>
-            {/* Left side: line and dot */}
             <View style={styles.timelineLeft}>
               <View style={styles.timelineDot}>
                 {item.type === 'start' && <MapPin size={12} color={COLORS.BACKGROUND} />}
                 {item.type === 'stop' && <Text style={styles.dotText}>{item.stopNumber}</Text>}
                 {item.type === 'end' && <Flag size={12} color={COLORS.BACKGROUND} />}
               </View>
-              {index !== itineraryData.length - 1 && (
+              {index !== ITINERARY_DATA.length - 1 && (
                 <View style={styles.timelineLine} />
               )}
             </View>
-            {/* Right side: content */}
             <View style={styles.timelineContentRow}>
               <View style={styles.timelineContent}>
                 <Text style={styles.timelineTitle}>{item.title}</Text>

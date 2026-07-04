@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { ChevronLeft, Heart, Share2, Star } from 'lucide-react-native';
 import React from 'react';
 import { Dimensions, FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { COLORS, FONTS } from '@/constants/theme';
 import { removeNewlines } from '@/utils/string';
@@ -18,6 +19,7 @@ const { width } = Dimensions.get('window');
 
 export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: DetailsHeroProps) {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   const images = [
@@ -48,12 +50,10 @@ export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: D
         keyExtractor={(item, index) => index.toString()}
       />
 
-      {/* Overlay controls */}
-      <View style={styles.overlay} pointerEvents="box-none">
-        {/* Top Header Buttons */}
+      <View style={[styles.overlay, { paddingTop: Math.max(insets.top, 24) }]} pointerEvents="box-none">
         <View style={styles.headerRow} pointerEvents="box-none">
           <Pressable style={styles.iconButton} onPress={() => {
-            router.push('/(tabs)/bookings');
+            router.back();
           }}>
             <ChevronLeft size={24} color={COLORS.BACKGROUND} />
           </Pressable>
@@ -69,9 +69,7 @@ export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: D
         </View>
 
         <View style={styles.bottomOverlay}>
-          {/* Rating and Indicator Row */}
           <View style={styles.ratingAndIndicatorRow}>
-            {/* Rating */}
             <View style={styles.ratingRow}>
               <View style={[styles.tag, { marginRight: 8 }]}>
                 <Text style={styles.tagText}>Nature & Hiking</Text>
@@ -82,7 +80,6 @@ export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: D
               </Text>
             </View>
 
-            {/* Carousel indicator on the right */}
             <View style={styles.indicatorContainer}>
               {images.map((_, index) => (
                 <View
@@ -96,10 +93,8 @@ export default function DetailsHero({ title, rating, reviewsCount, imageUrl }: D
             </View>
           </View>
 
-          {/* Title */}
-          <Text style={styles.title}>{removeNewlines(title)}</Text>
+          <Text style={styles.title} numberOfLines={2}>{removeNewlines(title)}</Text>
 
-          {/* Tags (at the very bottom) */}
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
